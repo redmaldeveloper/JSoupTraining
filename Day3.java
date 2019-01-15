@@ -14,6 +14,10 @@ import java.io.IOException;
 public class Day3 {
 
     public static void main(String[] args) throws IOException {
+
+        CompareAttr();
+
+        /*
         String html = "<html><head><title>Sample Title</title></head>"
                 + "<body>"
                 + "<p>Sample Content</p>"
@@ -68,6 +72,41 @@ public class Day3 {
         for (Element link : sampleLinks){
             System.out.println("Text: " + link.text());
         }
+        */
+    }
 
+
+    public static void CompareAttr(){
+        String html = "<html><head><title>Sample Title</title></head>"
+                + "<body>"
+                + "<p>Sample Content</p>"
+                + "<div id='sampleDiv'><a href='www.google.com'>Google</a>"
+                + "<h3><a>Sample</a><h3>"
+                +"</div>"
+                +"</body></html>";
+
+        String html2 = "<html><head><title>Sample Title</title></head>"
+                + "<body>"
+                + "<h3><a>SampleFirst</a><h3>"
+                + "<p>Sample Content</p>"
+                + "<div id='sampleDiv'><a href='www.google.com'>Google</a>"
+                + "<h3><a>Sample</a><h3>"
+                +"</div>"
+                +"</body></html>";
+
+        Document document = Jsoup.parse(html);
+
+        //a w/ href 1
+        Element links = document.select("a[href]").first();
+        System.out.println("Link 1 Test: " + links.attr("href"));
+
+        //a w/ href 2
+        Element links2 = document.select("a").first();
+        System.out.println("Link 2 Test: " + links2.attr("href"));
+
+        //a w/ href 3  - no result, test success
+        Document document2 = Jsoup.parse(html2);
+        Element links3 = document2.select("a").first();
+        System.out.println("Link 3 Test: " + links3.attr("href"));
     }
 }
