@@ -14,8 +14,11 @@ public class Day6 {
                     + " onClick='checkData()'>Link</a></p>";
 
         System.out.println("Initial HTML: " + html);
-        String safeHtml = Jsoup.clean(html, Whitelist.basic());
 
+        String safeHtml = Jsoup.clean(html, Whitelist.basic());
         System.out.println("Clean HTML: " + safeHtml);
+
+        String textOnly = Jsoup.clean(html, Whitelist.none());
+        System.out.println("Only text: " + textOnly);
     }
 }
